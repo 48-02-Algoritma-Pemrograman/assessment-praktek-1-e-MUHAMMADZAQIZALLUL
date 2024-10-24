@@ -31,7 +31,7 @@ jobs:
       with:
         test-name: Pas 3
         setup-command: javac Nomor1.java
-        command: javacNomor1
+        command: java Nomor1
         input: '3'
         expected-output: '300000'
         comparison-method: exact
