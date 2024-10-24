@@ -1,0 +1,96 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Under 3
+      id: under-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Under 3
+        setup-command: javac Nomor1.java
+        command: java Nomor1
+        input: '2'
+        expected-output: '200000'
+        comparison-method: exact
+        timeout: 10
+        max-score: 10
+    - name: Pas 3
+      id: pas-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Pas 3
+        setup-command: javac Nomor1.java
+        command: javacNomor1
+        input: '3'
+        expected-output: '300000'
+        comparison-method: exact
+        timeout: 10
+        max-score: 10
+    - name: Di atas 3
+      id: di-atas-3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Di atas 3
+        setup-command: javac Nomor1.java
+        command: java Nomor1
+        input: '5'
+        expected-output: '400000'
+        comparison-method: exact
+        timeout: 10
+        max-score: 20
+    - name: Tanpa tunjangan
+      id: tanpa-tunjangan
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Tanpa tunjangan
+        setup-command: javac Nomor1.java
+        command: java Nomor1
+        input: '0'
+        expected-output: '0'
+        comparison-method: exact
+        timeout: 10
+        max-score: 10
+    - name: Labubu
+      id: labubu
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Labubu
+        setup-command: javac Nomor2.java
+        command: java Nomor2
+        input: |-
+          Labubu
+          3
+          Y
+          Jenglot
+          2
+          Y
+          Labubu
+          2
+          N
+        expected-output: |-
+          3
+          735000.0
+        comparison-method: contains
+        timeout: 10
+        max-score: 50
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        UNDER-3_RESULTS: "${{steps.under-3.outputs.result}}"
+        PAS-3_RESULTS: "${{steps.pas-3.outputs.result}}"
+        DI-ATAS-3_RESULTS: "${{steps.di-atas-3.outputs.result}}"
+        TANPA-TUNJANGAN_RESULTS: "${{steps.tanpa-tunjangan.outputs.result}}"
+        LABUBU_RESULTS: "${{steps.labubu.outputs.result}}"
+      with:
+        runners: under-3,pas-3,di-atas-3,tanpa-tunjangan,labubu
