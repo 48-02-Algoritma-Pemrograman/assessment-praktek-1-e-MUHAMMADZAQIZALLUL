@@ -7,7 +7,6 @@ public class Nomor2{
         int hargaLabubu = 300000;
         int hargaJenglot = 250000;
         int hargaVoodoo = 200000;
-
         int totalTransaksi = 0;
         double totalUangDiterima = 0;
         String inputLagi = "";
@@ -35,7 +34,6 @@ public class Nomor2{
                     System.out.println("Produk tidak valid");
                     continue;
             }
-
             
             if (totalHarga >= 1000000) {
                 totalHarga *= 0.85;  
