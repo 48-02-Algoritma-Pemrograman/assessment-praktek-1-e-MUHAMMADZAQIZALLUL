@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Nomor1{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
@@ -14,7 +16,6 @@ public class Nomor1{
         } else if(anggota > 3){
             anggota -= 3;
             hasil = (tunjanganSisa * anggota) + 300000;
-            System.out.println("Jumlah anggota keluraga : " + anggota);
             System.out.println("Besar tunjangan kesehatan : " + hasil);
         }
     }
