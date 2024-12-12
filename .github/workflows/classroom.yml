@@ -19,7 +19,7 @@ jobs:
       with:
         test-name: Under 3
         setup-command: javac Nomor1.java
-        command: java Nomor1
+        command: javac Nomor1
         input: '2'
         expected-output: '200000'
         comparison-method: exact
@@ -43,7 +43,7 @@ jobs:
       with:
         test-name: Di atas 3
         setup-command: javac Nomor1.java
-        command: java Nomor1
+        command: javac Nomor1
         input: '5'
         expected-output: '400000'
         comparison-method: exact
@@ -55,7 +55,7 @@ jobs:
       with:
         test-name: Tanpa tunjangan
         setup-command: javac Nomor1.java
-        command: java Nomor1
+        command: javac Nomor1
         input: '0'
         expected-output: '0'
         comparison-method: exact
@@ -67,7 +67,7 @@ jobs:
       with:
         test-name: Labubu
         setup-command: javac Nomor2.java
-        command: java Nomor2
+        command: javac Nomor2
         input: |-
           Labubu
           3
